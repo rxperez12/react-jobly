@@ -8,6 +8,7 @@ import "./App.css";
  * Props: none
  * State: none
  *
+ * App -> {RouterList, NavBar}
  */
 
 function App() {
