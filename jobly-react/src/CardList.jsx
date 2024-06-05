@@ -28,7 +28,6 @@ function CardList({ jobs, companies }) {
         ))}
       {companies &&
         companies.map((company) => {
-          console.log("company", company);
           return (
             <CompanyCard
               key={uuid()}
