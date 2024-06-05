@@ -64,8 +64,19 @@ class JoblyApi {
   * - maxEmployees
   * - nameLike (will find case-insensitive, partial matches)
   */
-  static async getCompanies(filters) {
+  static async getCompanies(queryParams) {
+    let urlParams = '';
+    let baseCompanyUrl = 'companies/';
+    if (queryParams?.nameLike !== undefined) {
+      urlParams = new URLSearchParams(queryParams);
+    }
+    if (urlParams !== '') {
+      baseCompanyUrl += `?${urlParams.toString()}`;
+    }
 
+
+    let res = await this.request(baseCompanyUrl);
+    return res.companies;
   }
 
   /** Get jobs by search filter. If no search filter passed in, gets
@@ -82,5 +93,6 @@ class JoblyApi {
 
 
 }
+
 
 export default JoblyApi;
