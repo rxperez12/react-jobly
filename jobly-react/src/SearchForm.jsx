@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 /** SearchForm
  *
@@ -10,10 +10,39 @@ import React from "react";
  *
  * {CompanyList, JobList} -> SearchForm
  */
-function SearchForm({ handleClick }) {
+function SearchForm({ handleSearch }) {
+  const [formData, setFormData] = useState("");
+
+  function handleChange(evt) {
+    const value = evt.target.value;
+    console.log(value);
+    setFormData(value);
+  }
+  function handleClick(evt) {
+    evt.preventDefault();
+    handleSearch(value);
+    setFormData("");
+  }
+
   return (
     <div>
-      <h1>Form Component for searching</h1>
+      <form
+        className="SearchForm my-4"
+        onSubmit={handleClick}
+      >
+        <div className="d-flex justify-content-center">
+          <input
+            name="search"
+            placeholder="Enter search term.."
+            onChange={handleChange}
+            value={formData}
+            className=" form-control-lg rounded me-4"
+            type="text"
+            aria-label="Search"
+          />
+          <button className="btn btn-lg btn-primary ">Submit</button>
+        </div>
+      </form>
     </div>
   );
 }
