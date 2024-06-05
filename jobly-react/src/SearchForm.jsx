@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-/** SearchForm
+/** SearchForm component
  *
  * Props:
- * - fn to call in parent to handle search
+ * - handleSearch: fn to call in parent to handle search
  *
  * State:
  * - form input
@@ -20,7 +20,7 @@ function SearchForm({ handleSearch }) {
   }
   function handleClick(evt) {
     evt.preventDefault();
-    handleSearch(value);
+    handleSearch(formData);
     setFormData("");
   }
 
