@@ -8,7 +8,7 @@ function RoutesList() {
   return (
     <Routes>
       <Route
-        path="/companies/:company"
+        path="/companies/:handle"
         element={<CompanyDetail />}
       />
 
