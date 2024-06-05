@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchForm from "./SearchForm.jsx";
 import CardList from "./CardList.jsx";
 
-/** JobList
+/** JobList component renders TODO: fillout
  *
  * Props:
  * - none
