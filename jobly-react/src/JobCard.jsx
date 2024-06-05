@@ -1,7 +1,7 @@
 import React from "react";
 import "./JobCard.css";
 
-/** JobCard
+/** JobCard renders job card with title, salary, and equity
  *
  * Props:
  * - job
