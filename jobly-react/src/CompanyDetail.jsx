@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const INITIAL_STATE = { company: "", isLoading: true };
 
-/** Company Detail display component
+/** Company Detail component renders company details and job list
  *
  * Props:
  * -none
