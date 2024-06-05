@@ -65,17 +65,9 @@ class JoblyApi {
   * - nameLike (will find case-insensitive, partial matches)
   */
   static async getCompanies(queryParams) {
-    let urlParams = '';
-    let baseCompanyUrl = 'companies/';
-    if (queryParams?.nameLike !== undefined) {
-      urlParams = new URLSearchParams(queryParams);
-    }
-    if (urlParams !== '') {
-      baseCompanyUrl += `?${urlParams.toString()}`;
-    }
+    console.log('query params', queryParams);
 
-
-    let res = await this.request(baseCompanyUrl);
+    let res = await this.request("companies/", queryParams);
     return res.companies;
   }
 
