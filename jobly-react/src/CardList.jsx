@@ -1,6 +1,8 @@
 import React from "react";
 import JobCard from "./JobCard.jsx";
 import CompanyCard from "./CompanyCard.jsx";
+import "./CardList.css";
+import { v4 as uuid } from "uuid";
 
 /** AppComponent for summary
  *
@@ -16,11 +18,21 @@ import CompanyCard from "./CompanyCard.jsx";
  */
 function CardList({ jobs, companies }) {
   return (
-    <div>
-      <h1> Card List</h1>
-      <p> Will display Company or Job cards</p>
-      {jobs && <JobCard />}
-      {companies && <CompanyCard />}
+    <div className="CardList">
+      {jobs &&
+        jobs.map((job) => (
+          <JobCard
+            key={uuid()}
+            job={job}
+          />
+        ))}
+      {companies &&
+        companies.map((company) => (
+          <CompanyCard
+            key={uuid()}
+            company={company}
+          />
+        ))}
     </div>
   );
 }
