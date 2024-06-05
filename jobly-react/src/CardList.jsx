@@ -27,12 +27,15 @@ function CardList({ jobs, companies }) {
           />
         ))}
       {companies &&
-        companies.map((company) => (
-          <CompanyCard
-            key={uuid()}
-            company={company}
-          />
-        ))}
+        companies.map((company) => {
+          console.log("company", company);
+          return (
+            <CompanyCard
+              key={uuid()}
+              company={company}
+            />
+          );
+        })}
     </div>
   );
 }
