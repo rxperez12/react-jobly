@@ -1,23 +1,53 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import CardList from "./CardList.jsx";
+import { TEST_COMPANIES } from "./practiceData.js";
+import JoblyApi from "./api.js";
+import { useParams } from "react-router-dom";
 
-/** AppComponent for summary
+const INITIAL_STATE = { company: "", isLoading: true };
+
+/** Company Detail display component
  *
  * Props:
  * -none
  *
  * State:
- * - company with jobs
+ * - company like { handle, name, description, numEmployees, logoUrl
+ *  jobs, isLoading }
+ *  where jobs is [{ id, title, salary, equity }, ...]
  *
  * RoutesList -> CompanyDetail -> {CardList}
  */
 
 function CompanyDetail() {
+  const [companyDetailData, setCompanyDetailData] = useState(INITIAL_STATE);
+  const { handle } = useParams();
+
+  useEffect(function loadCompanyFromAPI() {
+    async function fetchData() {
+      const companyData = await JoblyApi.getCompany(handle);
+      companyData.isLoading = false;
+      setCompanyDetailData(companyData);
+    }
+    fetchData();
+  }, []);
+
+  if (companyDetailData.isLoading === true) {
+    return (
+      <div>
+        <h1>Loading Data</h1>
+      </div>
+    );
+  }
+
+  //get param for company and query API - param will be company handle
+  // Display cards for jobs
+
   return (
-    <div>
-      <h1> Company Detail Page</h1>
-      <p> will show company details and list of jobs available</p>
-      <CardList jobs={"jobs"} />
+    <div className="CompanyDetail mt-3">
+      <h3> {companyDetailData.name} </h3>
+      <p> {companyDetailData.description}</p>
+      <CardList jobs={companyDetailData.jobs} />
     </div>
   );
 }
