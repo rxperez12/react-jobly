@@ -40,9 +40,6 @@ function CompanyDetail() {
     );
   }
 
-  //get param for company and query API - param will be company handle
-  // Display cards for jobs
-
   return (
     <div className="CompanyDetail mt-3">
       <h3> {companyDetailData.name} </h3>
