@@ -4,6 +4,8 @@ import NavBar from "./NavBar.jsx";
 import { useState } from "react";
 import "./App.css";
 import JoblyApi from "./api.js";
+import userContext from "./userContext.js";
+
 import { practiceUser, practiceLogin } from "./practiceData.js";
 
 /** Component for entire page.
@@ -33,15 +35,34 @@ function App() {
     }
   }
 
+  async function handleSignup(formData) {
+    let loginData = null;
+    try {
+      signupData = await JoblyApi.signup(formData);
+    } catch (err) {
+      //display errors to user? maybe use context for this???
+    }
+    if (loginData !== null) {
+      let user = await JoblyApi.getUser(formData.username);
+      setUser(user);
+    }
+  }
+
+  //TODO: context is not working, fix
   return (
-    <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <div className="container">
-          <RoutesList handleLogin={handleLogin} />
-        </div>
-      </BrowserRouter>
-    </div>
+    <userContext.Provider value={{ user: user?.firstName }}>
+      <div className="App">
+        <BrowserRouter>
+          <NavBar />
+          <div className="container">
+            <RoutesList
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+            />
+          </div>
+        </BrowserRouter>
+      </div>
+    </userContext.Provider>
   );
 }
 
