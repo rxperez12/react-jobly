@@ -28,5 +28,7 @@ const TEST_COMPANIES = [
 ];
 
 const practiceUser = { username: 'username', firstName: "firstName", lastName: "lastName", email: "email", isAdmin: false, jobs: [] };
+const practiceLogin = { username: "test1", password: "password1", };
 
-export { TEST_COMPANIES, practiceUser };
+
+export { TEST_COMPANIES, practiceUser, practiceLogin };
