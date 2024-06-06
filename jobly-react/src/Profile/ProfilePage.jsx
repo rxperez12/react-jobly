@@ -4,6 +4,7 @@ import ProfileForm from "./ProfileForm";
  *
  * Props:
  * - handleEdit fn to be called in parent
+ * - userInfo
  *
  * State:
  * -
@@ -11,11 +12,13 @@ import ProfileForm from "./ProfileForm";
  * RoutesList -> ProfilePage -> ProfileForm
  */
 
-function ProfilePage({ handleEdit }) {
+function ProfilePage({ handleEdit, userInfo }) {
   return (
-    <div>
-      <h1>Profile Page</h1>
-      <ProfileForm handleSubmit={handleEdit} />
+    <div className="my-3">
+      <ProfileForm
+        handleSubmit={handleEdit}
+        userInfo={userInfo}
+      />
     </div>
   );
 }

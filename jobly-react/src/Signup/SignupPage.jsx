@@ -12,8 +12,7 @@ import SignupForm from "./SignupForm";
  */
 function SignupPage({ handleSignup }) {
   return (
-    <div>
-      <h1>Signup Page</h1>
+    <div className="my-3">
       <SignupForm handleSubmit={handleSignup} />
     </div>
   );

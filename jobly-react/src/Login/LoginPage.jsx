@@ -12,8 +12,7 @@ import LoginForm from "./LoginForm";
  */
 function LoginPage({ handleLogin }) {
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className="my-3">
       <LoginForm handleSubmit={handleLogin} />
     </div>
   );
