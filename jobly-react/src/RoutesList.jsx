@@ -3,6 +3,9 @@ import Homepage from "./Homepage.jsx";
 import CompanyList from "./CompanyList.jsx";
 import CompanyDetail from "./CompanyDetail.jsx";
 import JobList from "./JobList.jsx";
+import ProfilePage from "./ProfilePage.jsx";
+import SignupPage from "./SignupPage.jsx";
+import LoginPage from "./LoginPage.jsx";
 
 /** RoutesList
  *
@@ -12,11 +15,27 @@ import JobList from "./JobList.jsx";
  * State:
  * - none
  *
- * App -> RoutesList -> {CompanyDetail, CompanyList, JobList, Homepage}
+ * App -> RoutesList -> {CompanyDetail, CompanyList, JobList, Homepage, ProfilePage
+ * LoginPage, SignupPage}
  */
-function RoutesList() {
+function RoutesList({ handleLogin, handleEdit, handleSignup }) {
   return (
     <Routes>
+      <Route
+        path="/profile"
+        element={<ProfilePage handleEdit={handleEdit} />}
+      />
+
+      <Route
+        path="/signup"
+        element={<SignupPage handleSignup={handleSignup}/>}
+      />
+
+      <Route
+        path="/login"
+        element={<LoginPage handleLogin={handleLogin}/>}
+      />
+
       <Route
         path="/companies/:handle"
         element={<CompanyDetail />}
