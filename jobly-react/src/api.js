@@ -90,7 +90,7 @@ class JoblyApi {
   /** Log in to user, return token and save into static token else error
    */
   static async login(loginData) {
-    console.log('login', loginData);
+    console.log('login API', loginData);
 
     let res = await this.request("auth/token", loginData, "POST");
 
@@ -105,13 +105,25 @@ class JoblyApi {
    * like { username, firstName, lastName, email, isAdmin, jobs }
    */
   static async getUser(username) {
-    console.log('user', username);
+    console.log('user API', username);
 
     let res = await this.request(`users/${username}`);
     return res;
   }
 
+  /** Signup user, return token and save into static token else error
+     */
+  static async signup(signupData) {
+    console.log('signup API', signupData);
 
+    let res = await this.request("auth/register", signupData, "POST");
+
+    if (res?.token) {
+      this.token = res.token;
+    }
+
+    return res;
+  }
 
 
 }
