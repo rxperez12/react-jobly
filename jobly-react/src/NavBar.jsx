@@ -24,6 +24,14 @@ function NavBar() {
           </NavLink>
         </div>
         <ul className="nav navbar-nav mx-2">
+          <li>
+            <NavLink
+              className="mx-2"
+              to="/profile"
+            >
+              Profile
+            </NavLink>
+          </li>
           <li className="active">
             <NavLink
               className="mx-2"
@@ -38,6 +46,24 @@ function NavBar() {
               to="/jobs"
             >
               Jobs
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className="mx-2"
+              to="/login"
+            >
+              Login
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className="mx-2"
+              to="/signup"
+            >
+              Sign up
             </NavLink>
           </li>
         </ul>

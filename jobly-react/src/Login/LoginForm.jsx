@@ -36,7 +36,7 @@ function LoginForm({ handleSubmit }) {
   function handleClick(evt) {
     evt.preventDefault();
     handleSubmit(formData);
-    setFormData("");
+    setFormData(INITIAL_STATE);
     navigate("/");
   }
 
