@@ -15,7 +15,7 @@ function NavBar() {
   return (
     <nav className="NavBar navbar navbar-expand-sm">
       <div className="container-fluid">
-        <div class="navbar-header">
+        <div className="navbar-header">
           <NavLink
             className=" navbar-brand"
             to="/"
@@ -23,8 +23,8 @@ function NavBar() {
             Jobly
           </NavLink>
         </div>
-        <ul class="nav navbar-nav mx-2">
-          <li class="active">
+        <ul className="nav navbar-nav mx-2">
+          <li className="active">
             <NavLink
               className="mx-2"
               to="/companies"
