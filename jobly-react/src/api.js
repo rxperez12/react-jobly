@@ -87,6 +87,32 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** Log in to user, return token and save into static token else error
+   */
+  static async login(loginData) {
+    console.log('login', loginData);
+
+    let res = await this.request("auth/token", loginData, "POST");
+
+    if (res?.token) {
+      this.token = res.token;
+    }
+
+    return res;
+  }
+
+  /** Queries for user and returns user if found
+   * like { username, firstName, lastName, email, isAdmin, jobs }
+   */
+  static async getUser(username) {
+    console.log('user', username);
+
+    let res = await this.request(`users/${username}`);
+    return res;
+  }
+
+
+
 
 }
 
