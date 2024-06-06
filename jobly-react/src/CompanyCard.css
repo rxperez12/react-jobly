@@ -2,7 +2,13 @@
 
 .CompanyCard {
   width: 80vw;
-  border: solid black;
+  border: solid #343a40;
   border-radius: 12px;
   text-decoration: none;
+  background-color: #f1f3f5;
+}
+
+.CompanyCard-link {
+  text-decoration: none;
+  color: #343a40;
 }

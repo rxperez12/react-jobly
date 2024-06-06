@@ -1,14 +1,18 @@
 nav {
-  background-color: #339af0;
-  text-align: center;
+  background-color: #f1f3f5;
   font-weight: bold;
 }
 
 nav a {
   padding: 0.5em 0;
   width: 12em;
-  display: inline-block;
-  color: white;
+  color: #3a3440;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 1.25rem;
   text-decoration: none;
 }
 
@@ -19,5 +23,6 @@ nav a.active {
 
 nav a:hover {
   color: black;
+  font-weight: 600;
   text-decoration: none;
 }

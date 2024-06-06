@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchForm.css";
 
 /** SearchForm component
  *
@@ -13,14 +14,17 @@ import { useState } from "react";
 function SearchForm({ handleSearch }) {
   const [formData, setFormData] = useState("");
 
+  /** Handle user input into form */
   function handleChange(evt) {
     const value = evt.target.value;
     console.log(value);
     setFormData(value);
   }
+
+  /** Handle click by calling fn in parent with data */
   function handleClick(evt) {
     evt.preventDefault();
-    handleSearch(formData);
+    handleSearch(formData.trim());
     setFormData("");
   }
 
@@ -40,7 +44,9 @@ function SearchForm({ handleSearch }) {
             type="text"
             aria-label="Search"
           />
-          <button className="btn btn-lg btn-primary ">Submit</button>
+          <button className="SearchForm-btn btn btn-lg btn-light ">
+            Submit
+          </button>
         </div>
       </form>
     </div>

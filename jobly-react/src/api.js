@@ -56,7 +56,7 @@ class JoblyApi {
     return res.company;
   }
 
-  /** Get companies by search filter. If no search filter passed in, gets
+  /** Get companies by search text. If no search text passed in, gets
    * all companies.
    *
    * Can filter by:
@@ -64,10 +64,11 @@ class JoblyApi {
   * - maxEmployees
   * - nameLike (will find case-insensitive, partial matches)
   */
-  static async getCompanies(queryParams) {
-    console.log('query params', queryParams);
+  static async getCompanies(searchText = "") {
+    console.log('searchText', searchText);
 
-    let res = await this.request("companies/", queryParams);
+    let searchParams = searchText === "" ? {} : { nameLike: searchText };
+    let res = await this.request("companies/", searchParams);
     return res.companies;
   }
 
@@ -79,8 +80,11 @@ class JoblyApi {
   * - hasEquity (true returns only jobs with equity > 0, other values ignored)
   * - title (will find case-insensitive, partial matches)
    */
-  static async getJobs(filters) {
+  static async getJobs(queryParams) {
+    console.log('query params', queryParams);
 
+    let res = await this.request("jobs/", queryParams);
+    return res.jobs;
   }
 
 

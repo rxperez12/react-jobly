@@ -1,22 +1,47 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
 
-/** AppComponent for summary
+/** NavBar component
  *
  * Props:
- * -
+ * - none
  *
  * State:
- * -
+ * -none
  *
- * call list
+ * App -> NavBar
  */
 function NavBar() {
   return (
-    <nav className="NavBar">
-      <NavLink to="/">Jobly</NavLink>
-      <NavLink to="/companies">Companies</NavLink>
-      <NavLink to="/jobs">Jobs</NavLink>
+    <nav className="NavBar navbar navbar-expand-sm">
+      <div className="container-fluid">
+        <div class="navbar-header">
+          <NavLink
+            className=" navbar-brand"
+            to="/"
+          >
+            Jobly
+          </NavLink>
+        </div>
+        <ul class="nav navbar-nav mx-2">
+          <li class="active">
+            <NavLink
+              className="mx-2"
+              to="/companies"
+            >
+              Companies
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="mx-2"
+              to="/jobs"
+            >
+              Jobs
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

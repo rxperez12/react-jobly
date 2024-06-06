@@ -4,7 +4,7 @@ import CompanyCard from "./CompanyCard.jsx";
 import "./CardList.css";
 import { v4 as uuid } from "uuid";
 
-/** AppComponent for summary
+/** Card list renders list of cards for either companies or jobs TODO: express that it should only take one or the other
  *
  * Props:
  * - companies, jobs
@@ -17,6 +17,8 @@ import { v4 as uuid } from "uuid";
  * -> {JobCard, CompanyCard}
  */
 function CardList({ jobs, companies }) {
+  //TODO: one prop, either jobs or companies and then render proper list
+  //TODO: use id from db instead of uuid
   return (
     <div className="CardList">
       {jobs &&

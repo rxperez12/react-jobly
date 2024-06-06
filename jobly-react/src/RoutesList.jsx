@@ -4,6 +4,16 @@ import CompanyList from "./CompanyList.jsx";
 import CompanyDetail from "./CompanyDetail.jsx";
 import JobList from "./JobList.jsx";
 
+/** RoutesList
+ *
+ * Props:
+ * - none
+ *
+ * State:
+ * - none
+ *
+ * App -> RoutesList -> {CompanyDetail, CompanyList, JobList, Homepage}
+ */
 function RoutesList() {
   return (
     <Routes>

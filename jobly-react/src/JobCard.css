@@ -2,7 +2,9 @@
 
 .JobCard {
   width: 80vw;
-  border: solid black;
+  border: solid #3a3440;
   border-radius: 12px;
   text-decoration: none;
+  background-color: #f1f3f5;
+  color: #3a3440;
 }
