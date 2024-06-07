@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Alert.jsx";
+import { v4 as uuid } from "uuid";
 
 const INITIAL_STATE = {
   username: "",
   password: "",
 };
 
-/** Login Form component
+/** Login Form component shows login and displays appropriate login errors
  *
  * Props:
  * - handleSubmit function to be called in parent
+ *
  *
  * State:
  * -formData
@@ -19,6 +22,9 @@ const INITIAL_STATE = {
 function LoginForm({ handleSubmit }) {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const navigate = useNavigate();
+  const [errs, setErrors] = useState([]);
+
+  console.log("current error state", errs);
 
   /** Handle user input into form */
   function handleChange(evt) {
@@ -33,16 +39,38 @@ function LoginForm({ handleSubmit }) {
   }
 
   /** Handle click by calling fn in parent with data */
-  function handleClick(evt) {
+  async function handleClick(evt) {
     evt.preventDefault();
-    handleSubmit(formData);
-    setFormData(INITIAL_STATE);
+    try {
+      await handleSubmit(formData);
+    } catch (errs) {
+      console.log("errs", errs);
+      setErrors(errs);
+      return;
+    }
     navigate("/");
+  }
+
+  /** Display errors as alerts */
+  function displayErrors(errs) {
+    console.log("DISPLAY ERRS", errs);
+
+    return (
+      <div>
+        {errs.map((err) => (
+          <Alert
+            err={err}
+            key={uuid()}
+          />
+        ))}
+      </div>
+    );
   }
 
   return (
     <div>
       <h1>Login </h1>
+      {displayErrors(errs)}
       <form
         className="LoginForm my-4"
         onSubmit={handleClick}

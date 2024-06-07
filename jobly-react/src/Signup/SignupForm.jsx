@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Alert.jsx";
+import { v4 as uuid } from "uuid";
 
 const INITIAL_STATE = {
   username: "",
@@ -9,7 +11,7 @@ const INITIAL_STATE = {
   email: "",
 };
 
-/** Signup Form component
+/** Signup Form component shows form and displays appropriate signup errors
  *
  * Props:
  * - handleSubmit function to be called in parent
@@ -21,6 +23,7 @@ const INITIAL_STATE = {
  */
 function SignupForm({ handleSubmit }) {
   const [formData, setFormData] = useState(INITIAL_STATE);
+  const [errs, setErrors] = useState([]);
   const navigate = useNavigate();
 
   /** Handle user input into form */
@@ -36,16 +39,36 @@ function SignupForm({ handleSubmit }) {
   }
 
   /** Handle click by calling fn in parent with data */
-  function handleClick(evt) {
+  async function handleClick(evt) {
     evt.preventDefault();
-    handleSubmit(formData);
-    setFormData(INITIAL_STATE);
+    try {
+      await handleSubmit(formData);
+    } catch (errs) {
+      console.log("errs", errs);
+      setErrors(errs); //TODO: set uuid here
+      return;
+    }
     navigate("/");
+  }
+
+  /** Display errors as alerts */
+  function displayErrors(errs) {
+    return (
+      <div>
+        {errs.map((err) => (
+          <Alert
+            err={err}
+            key={uuid()}
+          />
+        ))}
+      </div>
+    );
   }
 
   return (
     <div>
       <h1>Sign Up </h1>
+      {displayErrors(errs)}
       <form
         className="LoginForm my-4"
         onSubmit={handleClick}
@@ -128,12 +151,7 @@ function SignupForm({ handleSubmit }) {
             type=""
             aria-label="Email input to sign up"
           />
-          <button
-            className="Signup-btn btn btn-light my-3
-          "
-          >
-            Submit
-          </button>
+          <button className="Signup-btn btn btn-light my-3">Submit</button>
         </div>
       </form>
     </div>

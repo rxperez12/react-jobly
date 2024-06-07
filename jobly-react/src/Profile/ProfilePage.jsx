@@ -1,13 +1,16 @@
-import ProfileForm from "./ProfileForm";
+import ProfileForm from "./ProfileForm.jsx";
+import Alert from "../Alert.jsx";
+import { v4 as uuid } from "uuid";
 
 /** Profile Page component
  *
  * Props:
  * - handleEdit fn to be called in parent
- * - userInfo
+ * - userData like { username, firstName, lastName, email, isAdmin, jobs }
+ *
  *
  * State:
- * -
+ * - none
  *
  * RoutesList -> ProfilePage -> ProfileForm
  */

@@ -5,7 +5,8 @@ import { practiceUser } from "../practiceData";
  *
  * Props:
  * - handleSubmit function called in parent
- * - currentUser data
+ * - updateUser fn to be called in parent
+ * - userData like { username, firstName, lastName, email, isAdmin, jobs }
  *
  * State:
  * - formData
@@ -31,7 +32,6 @@ function ProfileForm({ handleSubmit, userData }) {
   function handleClick(evt) {
     evt.preventDefault();
     handleSubmit(formData);
-    setFormData("");
   }
 
   return (
