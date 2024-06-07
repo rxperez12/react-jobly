@@ -23,7 +23,7 @@ const INITIAL_STATE = {
  */
 function SignupForm({ handleSubmit }) {
   const [formData, setFormData] = useState(INITIAL_STATE);
-  const [errs, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
   /** Handle user input into form */
@@ -68,7 +68,7 @@ function SignupForm({ handleSubmit }) {
   return (
     <div>
       <h1>Sign Up </h1>
-      {displayErrors(errs)}
+      {displayErrors(errors)}
       <form
         className="LoginForm my-4"
         onSubmit={handleClick}

@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./Homepage.jsx";
-import CompanyList from "./CompanyList.jsx";
-import CompanyDetail from "./CompanyDetail.jsx";
-import JobList from "./JobList.jsx";
+import CompanyList from "./Company/CompanyList.jsx";
+import CompanyDetail from "./Company/CompanyDetail.jsx";
+import JobList from "./Job/JobList.jsx";
 import ProfilePage from "./Profile/ProfilePage.jsx";
 import SignupPage from "./Signup/SignupPage.jsx";
 import LoginPage from "./Login/LoginPage.jsx";

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import CardList from "./CardList.jsx";
-import { TEST_COMPANIES } from "./practiceData.js";
-import JoblyApi from "./api.js";
+import CardList from "../CardList.jsx";
+import { TEST_COMPANIES } from "../practiceData.js";
+import JoblyApi from "../api.js";
 import { useParams } from "react-router-dom";
 
 const INITIAL_STATE = { company: "", isLoading: true, err: null };

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { practiceUser } from "../practiceData";
+import Alert from "../Alert.jsx";
+import { v4 as uuid } from "uuid";
 
 /** Profile Form component for editing profile
  *
  * Props:
  * - handleSubmit function called in parent
- * - updateUser fn to be called in parent
  * - userData like { username, firstName, lastName, email, isAdmin, jobs }
  *
  * State:
@@ -16,6 +16,7 @@ import { practiceUser } from "../practiceData";
 function ProfileForm({ handleSubmit, userData }) {
   console.log("PROFILE FORM USER", userData);
   const [formData, setFormData] = useState(userData.user);
+  const [errors, setErrors] = useState([]);
 
   /** Handle user input into form */
   function handleChange(evt) {
@@ -29,14 +30,37 @@ function ProfileForm({ handleSubmit, userData }) {
   }
 
   /** Handle click by calling fn in parent with data */
-  function handleClick(evt) {
+  async function handleClick(evt) {
     evt.preventDefault();
-    handleSubmit(formData);
+    try {
+      await handleSubmit(formData);
+    } catch (errs) {
+      console.log("errs", errs);
+      setErrors(errs);
+      return;
+    }
+  }
+
+  /** Display errors as alerts */
+  function displayErrors(errs) {
+    console.log("DISPLAY ERRS", errs);
+
+    return (
+      <div>
+        {errs.map((err) => (
+          <Alert
+            err={err}
+            key={uuid()}
+          />
+        ))}
+      </div>
+    );
   }
 
   return (
     <div>
       <h1>Profile </h1>
+      {displayErrors(errors)}
       <form
         className="LoginForm my-4"
         onSubmit={handleClick}

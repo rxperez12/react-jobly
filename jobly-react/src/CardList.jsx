@@ -1,6 +1,6 @@
 import React from "react";
-import JobCard from "./JobCard.jsx";
-import CompanyCard from "./CompanyCard.jsx";
+import JobCard from "./Job/JobCard.jsx";
+import CompanyCard from "./Company/CompanyCard.jsx";
 import "./CardList.css";
 import { v4 as uuid } from "uuid";
 

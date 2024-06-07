@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import SearchForm from "./SearchForm.jsx";
-import CardList from "./CardList.jsx";
-import { TEST_COMPANIES } from "./practiceData.js";
-import JoblyApi from "./api.js";
+import SearchForm from "../SearchForm.jsx";
+import CardList from "../CardList.jsx";
+import { TEST_COMPANIES } from "../practiceData.js";
+import JoblyApi from "../api.js";
 
 const INITIAL_STATE = {
   companies: "",

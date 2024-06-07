@@ -21,6 +21,7 @@ function App() {
 
   // Logs in existing user if token exists in local storage
   useEffect(function logInExistingUser() {
+    //getUserOnMount - change name
     async function logInTokenUser() {
       const token = localStorage.getItem("token");
 
@@ -29,7 +30,7 @@ function App() {
         const decodedPayload = JoblyApi.decodeTokenPayload();
 
         try {
-          updateUser(decodedPayload.username);
+          await updateUser(decodedPayload.username);
         } catch (errs) {
           localStorage.removeItem("token");
         }
@@ -46,7 +47,7 @@ function App() {
 
     localStorage.setItem("token", loginData.token);
 
-    updateUser(formData.username);
+    await updateUser(formData.username);
   }
 
   /** Handle user sign up, make API call and updates userData in state*/
@@ -56,7 +57,7 @@ function App() {
 
     localStorage.setItem("token", signupData.token);
 
-    updateUser(formData.username);
+    await updateUser(formData.username);
   }
 
   /** Updates userData on successful form submit */
@@ -69,7 +70,6 @@ function App() {
 
   /** Handle user edit, make API call and if successful update state */
   async function handleEdit(formData) {
-    let editData = null;
     let inputData = {
       username: userData.user.username,
       firstName: formData.firstName,
@@ -77,15 +77,9 @@ function App() {
       email: formData.email,
     };
 
-    //Make API call
-    editData = await JoblyApi.editUser(inputData);
+    const editedUserData = await JoblyApi.editUser(inputData);
 
-    //Update state on success
-    if (editData !== null) {
-      setUserData(() => {
-        return { ...editData, errs: [] };
-      });
-    }
+    await updateUser(editedUserData.user.username); //
   }
 
   /** Handle user edit, make JoblyApi function call and if successful update state */
@@ -114,9 +108,10 @@ function App() {
     );
   }
 
-  if (localStorage.getItem("token") && userData.user !== null) {
-    return <i> Loading </i>;
+  if (localStorage.getItem("token") && userData.user === null) {
+    return <i> Loading </i>; // TODO: add loading component
   }
+
   return (
     <userContext.Provider value={{ user: userData.user?.firstName }}>
       <div className="App">
