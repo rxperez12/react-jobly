@@ -13,12 +13,12 @@ import userContext from "./userContext.js";
  */
 
 function Homepage() {
-  // const { user } = useContext(userContext);
-  // console.log("homepage user", user);
+  const { user } = useContext(userContext);
+
   return (
-    <div>
+    <div className="m-5">
       <h1>Hi! Welcome to Jobly</h1>
-      {/* {user && <div>Welcome {user}</div>} */}
+      {user && <div>Welcome {user}</div>}
     </div>
   );
 }
