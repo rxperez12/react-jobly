@@ -54,7 +54,7 @@ function NavBar({ userData, logOut }) {
               <li>
                 <button
                   onClick={logOut}
-                  className="btn btn-link"
+                  className="btn btn-primary mx-4"
                 >
                   Log out
                 </button>
