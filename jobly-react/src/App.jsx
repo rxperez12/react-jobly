@@ -8,6 +8,8 @@ import userContext from "./userContext.js";
 
 import { practiceUser, practiceLogin } from "./practiceData.js";
 
+const INITIAL_STATE = { user: null, err: [] };
+
 /** Component for entire page.
  *
  * Props: none
@@ -17,7 +19,7 @@ import { practiceUser, practiceLogin } from "./practiceData.js";
  */
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(INITIAL_STATE);
 
   console.log("Current user", user);
 
@@ -25,26 +27,54 @@ function App() {
   async function handleLogin(formData) {
     let loginData = null;
     try {
-      loginData = await JoblyApi.login(formData);
+      loginData = await JoblyApi.logIn(formData);
     } catch (err) {
       //display errors to user? maybe use context for this???
     }
     if (loginData !== null) {
-      let user = await JoblyApi.getUser(formData.username);
-      setUser(user);
+      let userData = await JoblyApi.getUser(formData.username);
+      setUser(() => {
+        return { ...userData, errs: [] };
+      });
     }
   }
 
   async function handleSignup(formData) {
     let loginData = null;
     try {
-      signupData = await JoblyApi.signup(formData);
+      signupData = await JoblyApi.signUp(formData);
     } catch (err) {
       //display errors to user? maybe use context for this???
     }
     if (loginData !== null) {
-      let user = await JoblyApi.getUser(formData.username);
-      setUser(user);
+      let userData = await JoblyApi.getUser(formData.username);
+      setUser(() => {
+        return { ...userData, errs: [] };
+      });
+    }
+  }
+
+  async function handleEdit(formData) {
+    let loginData = null;
+    try {
+      signupData = await JoblyApi.editUser(formData);
+    } catch (err) {
+      //display errors to user? maybe use context for this???
+    }
+    if (loginData !== null) {
+      let userData = await JoblyApi.getUser(formData.username);
+      setUser(() => {
+        return { ...userData, errs: [] };
+      });
+    }
+  }
+
+  function handleLogOut() {
+    let userData = JoblyApi.logOut();
+    if (userData.user === null) {
+      setUser(() => {
+        return { ...userData, errs: [] };
+      });
     }
   }
 
@@ -53,11 +83,16 @@ function App() {
     <userContext.Provider value={{ user: user?.firstName }}>
       <div className="App">
         <BrowserRouter>
-          <NavBar />
+          <NavBar
+            userData={user}
+            logOut={handleLogOut}
+          />
           <div className="container">
             <RoutesList
               handleLogin={handleLogin}
               handleSignup={handleSignup}
+              handleEdit={handleEdit}
+              userData={user}
             />
           </div>
         </BrowserRouter>
