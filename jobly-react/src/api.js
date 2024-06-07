@@ -89,10 +89,10 @@ class JoblyApi {
 
   /** Log in to user, return token and save into static token else error
    */
-  static async login(loginData) {
-    console.log('login API', loginData);
+  static async logIn(logInData) {
+    console.log('login API', logInData);
 
-    let res = await this.request("auth/token", loginData, "POST");
+    let res = await this.request("auth/token", logInData, "POST");
 
     if (res?.token) {
       this.token = res.token;
@@ -111,12 +111,14 @@ class JoblyApi {
     return res;
   }
 
+
+
   /** Signup user, return token and save into static token else error
      */
-  static async signup(signupData) {
-    console.log('signup API', signupData);
+  static async signUp(signUpData) {
+    console.log('signup API', signUpData);
 
-    let res = await this.request("auth/register", signupData, "POST");
+    let res = await this.request("auth/register", signUpData, "POST");
 
     if (res?.token) {
       this.token = res.token;
@@ -125,7 +127,21 @@ class JoblyApi {
     return res;
   }
 
+  /** Edit user information, and return updated user data
+     */
+  static async editUser(editUserData) {
+    console.log('edit API', editUserData);
 
+    let res = await this.request(`users/${username}`, editUserData, "POST");
+
+    return res;
+  }
+
+  /** Logs out user by setting token to empty string and returns {user: null}  */
+  static logOut() {
+    this.token = '';
+    return { user: null };
+  }
 }
 
 
