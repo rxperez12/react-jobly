@@ -11,7 +11,8 @@ import "./NavBar.css";
  *
  * App -> NavBar
  */
-function NavBar() {
+function NavBar({ userData, logOut }) {
+  console.log("NAVBAR User", userData);
   return (
     <nav className="NavBar navbar navbar-expand-sm">
       <div className="container-fluid">
@@ -24,48 +25,62 @@ function NavBar() {
           </NavLink>
         </div>
         <ul className="nav navbar-nav mx-2">
-          <li>
-            <NavLink
-              className="mx-2"
-              to="/profile"
-            >
-              Profile
-            </NavLink>
-          </li>
-          <li className="active">
-            <NavLink
-              className="mx-2"
-              to="/companies"
-            >
-              Companies
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="mx-2"
-              to="/jobs"
-            >
-              Jobs
-            </NavLink>
-          </li>
+          {userData.user !== null ? (
+            <>
+              <li>
+                <NavLink
+                  className="mx-2"
+                  to="/profile"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li className="active">
+                <NavLink
+                  className="mx-2"
+                  to="/companies"
+                >
+                  Companies
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="mx-2"
+                  to="/jobs"
+                >
+                  Jobs
+                </NavLink>
+              </li>
+              <li>
+                <button
+                  onClick={logOut}
+                  className="btn btn-link"
+                >
+                  Log out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  className="mx-2"
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink
-              className="mx-2"
-              to="/login"
-            >
-              Login
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              className="mx-2"
-              to="/signup"
-            >
-              Sign up
-            </NavLink>
-          </li>
+              <li>
+                <NavLink
+                  className="mx-2"
+                  to="/signup"
+                >
+                  Sign up
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
