@@ -12,12 +12,12 @@ import ProfileForm from "./ProfileForm";
  * RoutesList -> ProfilePage -> ProfileForm
  */
 
-function ProfilePage({ handleEdit, userInfo }) {
+function ProfilePage({ handleEdit, userData }) {
   return (
     <div className="my-3">
       <ProfileForm
         handleSubmit={handleEdit}
-        userInfo={userInfo}
+        userData={userData}
       />
     </div>
   );

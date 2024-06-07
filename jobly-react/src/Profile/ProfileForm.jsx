@@ -12,14 +12,13 @@ import { practiceUser } from "../practiceData";
  *
  * ProfilePage -> ProfileForm
  */
-function ProfileForm({ handleSubmit, currentUser }) {
-  const [formData, setFormData] = useState(practiceUser);
+function ProfileForm({ handleSubmit, userData }) {
+  console.log("PROFILE FORM USER", userData);
+  const [formData, setFormData] = useState(userData.user);
 
   /** Handle user input into form */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    console.log(value, "value");
-    console.log(value);
     setFormData((formData) => {
       return {
         ...formData,
