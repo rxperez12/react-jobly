@@ -13,6 +13,7 @@ import LoginPage from "./Login/LoginPage.jsx";
  * - handleLogin fn
  * - handleEdit fn
  * - handleSignUp fn
+ * - updateUser fn
  * - userData like { username, firstName, lastName, email, isAdmin, jobs }
  *
  * State:
@@ -21,7 +22,13 @@ import LoginPage from "./Login/LoginPage.jsx";
  * App -> RoutesList -> {CompanyDetail, CompanyList, JobList, Homepage, ProfilePage
  * LoginPage, SignupPage}
  */
-function RoutesList({ handleLogin, handleEdit, handleSignup, userData }) {
+function RoutesList({
+  handleLogin,
+  handleEdit,
+  handleSignup,
+  updateUser,
+  userData,
+}) {
   console.log("ROUTES LIST USER DATA", userData);
 
   if (userData.user === null) {
@@ -29,12 +36,24 @@ function RoutesList({ handleLogin, handleEdit, handleSignup, userData }) {
       <Routes>
         <Route
           path="/signup"
-          element={<SignupPage handleSignup={handleSignup} />}
+          element={
+            <SignupPage
+              handleSignup={handleSignup}
+              userData={userData}
+              updateUser={updateUser}
+            />
+          }
         />
 
         <Route
           path="/login"
-          element={<LoginPage handleLogin={handleLogin} />}
+          element={
+            <LoginPage
+              handleLogin={handleLogin}
+              userData={userData}
+              updateUser={updateUser}
+            />
+          }
         />
         <Route
           path="/"
