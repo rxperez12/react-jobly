@@ -84,7 +84,7 @@ function App() {
 
   /** Handle user edit, make JoblyApi function call and if successful update state */
   function handleLogOut() {
-    let userData = JoblyApi.logOut();
+    const userData = JoblyApi.logOut();
 
     localStorage.removeItem("token");
     if (userData.user === null) {
@@ -106,6 +106,14 @@ function App() {
         ))}
       </div>
     );
+  }
+
+  /** Handles apply, makes Jobly API call and updates state */
+  function handleApply(jobId) {
+    const applyData = {username: userData.user.username, jobId: jobId};
+    const appliedJobData = JoblyApi.apply(applyData);
+
+
   }
 
   if (localStorage.getItem("token") && userData.user === null) {

@@ -8,6 +8,7 @@ import { v4 as uuid } from "uuid";
  *
  * Props:
  * - companies, jobs
+ * - handleApply fn that is called in parent
  *
  * State:
  * - none
@@ -16,15 +17,15 @@ import { v4 as uuid } from "uuid";
  * -> CardList
  * -> {JobCard, CompanyCard}
  */
-function CardList({ jobs, companies }) {
+function CardList({ jobs, companies, handleApply }) {
   //TODO: one prop, either jobs or companies and then render proper list
-  //TODO: use id from db instead of uuid
+
   return (
     <div className="CardList">
       {jobs &&
         jobs.map((job) => (
           <JobCard
-            key={uuid()}
+            key={job.id}
             job={job}
           />
         ))}
@@ -32,8 +33,9 @@ function CardList({ jobs, companies }) {
         companies.map((company) => {
           return (
             <CompanyCard
-              key={uuid()}
+              key={company.handle}
               company={company}
+              handleApply={handleApply}
             />
           );
         })}

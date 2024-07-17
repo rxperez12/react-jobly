@@ -28,10 +28,12 @@ function RoutesList({
   handleSignup,
   updateUser,
   userData,
+  handleApply,
+  userAppliedJobs,
 }) {
   console.log("ROUTES LIST USER DATA", userData);
 
-  if (userData.user === null) {
+  function loggedOut() {
     return (
       <Routes>
         <Route
@@ -68,44 +70,57 @@ function RoutesList({
     );
   }
 
-  return (
-    <Routes>
-      <Route
-        path="/profile"
-        element={
-          <ProfilePage
-            handleEdit={handleEdit}
-            userData={userData}
-          />
-        }
-      />
+  function loggedIn() {
+    return (
+      <Routes>
+        <Route
+          path="/profile"
+          element={
+            <ProfilePage
+              handleEdit={handleEdit}
+              userData={userData}
+            />
+          }
+        />
 
-      <Route
-        path="/companies/:handle"
-        element={<CompanyDetail />}
-      />
+        <Route
+          path="/companies/:handle"
+          element={<CompanyDetail />}
+        />
 
-      <Route
-        path="/companies"
-        element={<CompanyList />}
-      />
+        <Route
+          path="/companies"
+          element={<CompanyList />}
+        />
 
-      <Route
-        path="/jobs"
-        element={<JobList />}
-      />
+        <Route
+          path="/jobs"
+          element={
+            <JobList
+              handleApply={handleApply}
+              userAppliedJobs={userAppliedJobs}
+            />
+          }
+        />
 
-      <Route
-        path="/"
-        element={<Homepage />}
-      />
+        <Route
+          path="/"
+          element={<Homepage />}
+        />
 
-      <Route
-        path="/*"
-        element={<Navigate to="/" />}
-      />
-    </Routes>
-  );
+        <Route
+          path="/*"
+          element={<Navigate to="/" />}
+        />
+      </Routes>
+    );
+  }
+
+  if (userData.user === null) {
+    return <>{loggedOut()}</>;
+  }
+
+  return <>{loggedIn()}</>;
 }
 
 export default RoutesList;

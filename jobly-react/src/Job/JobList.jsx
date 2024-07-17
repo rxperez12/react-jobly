@@ -13,7 +13,8 @@ const INITIAL_STATE = {
 /** JobList component renders search form and job list
  *
  * Props:
- * - none
+ * - handleApply callback fn to be called in parent
+ * - userAppliedJobs
  *
  * State:
  * - jobData like {jobs: [{}, ...], search: boolean, isLoading: boolean,
@@ -22,7 +23,7 @@ const INITIAL_STATE = {
  *
  * RoutesList -> JobList -> {CardList, SearchForm}
  */
-function JobList() {
+function JobList({ handleApply, userAppliedJobs }) {
   const [jobData, setJobData] = useState(INITIAL_STATE);
   console.log("job list: companies", jobData);
 
@@ -72,7 +73,11 @@ function JobList() {
     <div>
       <SearchForm handleSearch={getSearchData} />
       <div>{setSearchLabel()}</div>
-      <CardList jobs={jobData.jobs} />
+      <CardList
+        jobs={jobData.jobs}
+        userAppliedJobs={userAppliedJobs}
+        handleApply={handleApply}
+      />
     </div>
   );
 }

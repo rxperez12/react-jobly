@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 /** Company Card renders company name, company image, and description
  *
  * Props:
- * - company
+ * - company like {handle, name, description, numEmployees, logoUrl}
  *
  * State:
  * - none
@@ -23,7 +23,6 @@ function CompanyCard({ company }) {
     logoImagePathSplit !== ""
       ? `/${logoImagePathSplit[logoImagePathSplit.length - 1]}`
       : "";
-  // NOTE: probably easier to figure this out somewhere else or just make a folder with logo images
 
   return (
     <Link

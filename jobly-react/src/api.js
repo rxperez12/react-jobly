@@ -156,6 +156,8 @@ class JoblyApi {
   static resetToken(token) {
     this.token = token;
   }
+
+  /** Given object with username and jobId */
 }
 
 
